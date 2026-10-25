@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101715">
+    <meta name="description" content="CareGuide helps you prepare a clear summary for a conversation with a healthcare professional.">
+    <title>CareGuide AI — Healthcare Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="dashboard">
+      <aside class="sidebar">
+        <a class="brand" href="#overview" data-view-target="overview" aria-label="CareGuide AI home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="13" fill="currentColor" />
+              <path d="M20 10v20M10 20h20" stroke="#fff" stroke-width="3.2" stroke-linecap="round" />
+              <circle cx="29.5" cy="10.5" r="3.5" fill="#B9E6D5" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>CareGuide<span> AI</span></strong>
+            <small>HEALTHCARE ASSISTANT</small>
+          </span>
+        </a>
+
+        <div class="sidebar-rule"></div>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <p class="nav-heading">YOUR WORKSPACE</p>
+          <a class="nav-link is-active" href="#overview" data-view-target="overview" aria-current="page">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.7"/></svg>
+            <span>Overview</span>
+          </a>
+          <a class="nav-link" href="#visit-prep" data-view-target="visit">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M8 4.75h8m-8 4h8m-8 4h5m-9.25-9A1.75 1.75 0 0 1 5.5 2h13a1.75 1.75 0 0 1 1.75 1.75v16.5A1.75 1.75 0 0 1 18.5 22h-13a1.75 1.75 0 0 1-1.75-1.75V3.75Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Prepare for a visit</span>
+          </a>
+          <a class="nav-link" href="#urgent-care" data-view-target="emergency">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.25h.01M10.3 3.8 2.6 17.2A1.9 1.9 0 0 0 4.25 20h15.5a1.9 1.9 0 0 0 1.65-2.8L13.7 3.8a1.95 1.95 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Emergency guidance</span>
+          </a>
+          <a class="nav-link" href="#summary-panel" data-view-target="summary">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10m-10 4h10m-10 4h6m-9-9A1.5 1.5 0 0 1 5.5 2h13A1.5 1.5 0 0 1 20 3.5v17a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-17Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Visit summary</span>
+          </a>
+          <a class="nav-link" href="#medical-report-explainer" data-view-target="report">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5h8l4 4v13h-12v-17Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.5 3.5v4h4m-9 4h6m-6 3h6m-6 3h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Report explainer</span>
+          </a>
+          <a class="nav-link" href="#doctor-finder" data-view-target="doctor-finder">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M6 4v5a4 4 0 0 0 8 0V4M4 4h4m4 0h4M10 13v1a4 4 0 0 0 8 0v-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="11.5" r="1.5" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span>Doctor finder</span>
+          </a>
+          <a class="nav-link" href="#appointment-planner" data-view-target="appointment">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 3v4m9-4v4M4 9.5h16m-12 3.5h3m-3 3h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <span>Appointment planner</span>
+          </a>
+          <a class="nav-link" href="#wellness-planner" data-view-target="wellness">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.3-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.7-7.5 10-7.5 10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12h2l1.1-2.2 1.7 4.4 1.1-2.2h1.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Wellness check-in</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-safety-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5.5c0 4.3-2.9 7.7-7 9.5-4.1-1.8-7-5.2-7-9.5V6l7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12.2 11 14l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p><strong>Educational prototype</strong><br>Not a diagnosis or a substitute for professional care.</p>
+        </div>
+      </aside>
+
+      <div class="main-column">
+        <header class="topbar" id="top">
+          <div class="breadcrumb"><span>CareGuide</span><span class="breadcrumb-slash">/</span><h1 class="breadcrumb-title" id="page-heading" tabindex="-1">Overview</h1></div>
+          <div class="topbar-actions">
+            <span class="language-label"><span class="language-dot"></span> English</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="true" title="Switch color theme">
+              <svg class="theme-icon icon-moon" aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M16.8 12.2A7.2 7.2 0 0 1 7.8 3.2a7.4 7.4 0 1 0 9 9Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg class="theme-icon icon-sun" aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3.2" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.2v1.5m0 12.6v1.5M17.8 10h-1.5M3.7 10H2.2m13.3-5.5-1.1 1.1M5.6 14.4l-1.1 1.1m11 0-1.1-1.1M5.6 5.6 4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span id="theme-label">Light mode</span>
+            </button>
+          </div>
+        </header>
+
+        <main class="dashboard-main" id="main-content">
+          <section class="app-view view-overview" id="view-overview" data-app-view="overview" aria-labelledby="page-heading">
+          <section class="welcome-panel" id="overview" aria-labelledby="page-title">
+            <div class="welcome-copy">
+              <p class="eyebrow"><span class="eyebrow-mark"></span> YOUR HEALTH WORKSPACE</p>
+              <h2 class="welcome-title" id="page-title">Care, organized <span>around you.</span></h2>
+              <p class="welcome-description">A thoughtful place to collect what you’re noticing and prepare for a conversation with a healthcare professional.</p>
+              <a class="button button-primary welcome-action" href="#visit-prep" data-view-target="visit">
+                Prepare for a visit
+                <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <p class="welcome-disclaimer"><svg aria-hidden="true" viewBox="0 0 18 18" fill="none"><path d="M9 2 15.5 5v5.1c0 3.5-2.5 6.1-6.5 7.9-4-1.8-6.5-4.4-6.5-7.9V5L9 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M9 6v3.7m0 2.1h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Educational prototype · Does not diagnose or replace a clinician</p>
+            </div>
+            <div class="welcome-art" aria-hidden="true">
+              <span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span>
+              <span class="art-cross"><svg viewBox="0 0 72 72" fill="none"><rect width="72" height="72" rx="24" fill="currentColor"/><path d="M36 19v34M19 36h34" stroke="white" stroke-width="7" stroke-linecap="round"/><circle cx="53" cy="19" r="6" fill="#BDE8D7"/></svg></span>
+              <span class="art-pill pill-one"></span><span class="art-pill pill-two"></span>
+            </div>
+          </section>
+
+          <section class="quick-tools" aria-label="CareGuide tools">
+            <article class="tool-card">
+              <div class="tool-topline">
+                <span class="tool-icon icon-visit" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4.75h8m-8 4h8m-8 4h5m-9.25-9A1.75 1.75 0 0 1 5.5 2h13a1.75 1.75 0 0 1 1.75 1.75v16.5A1.75 1.75 0 0 1 18.5 22h-13a1.75 1.75 0 0 1-1.75-1.75V3.75Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                <span class="tool-index">01</span>
+              </div>
+              <p class="tool-eyebrow">VISIT PREPARATION</p>
+              <h2>Capture your notes</h2>
+              <p>Add a concern, how long it’s been happening, and how intense it feels.</p>
+              <a class="text-link" href="#visit-prep" data-view-target="visit">Open visit notes <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-topline">
+                <span class="tool-icon icon-emergency" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.25h.01M10.3 3.8 2.6 17.2A1.9 1.9 0 0 0 4.25 20h15.5a1.9 1.9 0 0 0 1.65-2.8L13.7 3.8a1.95 1.95 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="tool-index">02</span>
+              </div>
+              <p class="tool-eyebrow">SAFETY FIRST</p>
+              <h2>Urgent guidance</h2>
+              <p>Emergency guidance is available within this educational tool.</p>
+              <a class="text-link" href="#urgent-care" data-view-target="emergency">Review the guidance <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-topline">
+                <span class="tool-icon icon-summary" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 4.5h10m-10 4h10m-10 4h6m-9-9A1.5 1.5 0 0 1 5.5 2h13A1.5 1.5 0 0 1 20 3.5v17a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 20.5v-17Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                <span class="tool-index">03</span>
+              </div>
+              <p class="tool-eyebrow">CONVERSATION SUMMARY</p>
+              <h2>Bring a clear note</h2>
+              <p>Create a simple summary locally after you add your visit-prep details.</p>
+              <a class="text-link" href="#summary-panel" data-view-target="summary">Go to summary <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </article>
+          </section>
+
+          <section class="overview-status-grid" aria-label="Current planner status">
+            <article class="overview-status-card"><span>VISIT SUMMARY</span><strong id="overview-summary-status">No current summary</strong><a href="#summary-panel" data-view-target="summary">View summary</a></article>
+            <article class="overview-status-card"><span>APPOINTMENT</span><strong id="overview-appointment-status">No appointment planned</strong><a href="#appointment-planner" data-view-target="appointment">Open planner</a></article>
+            <article class="overview-status-card"><span>WELLNESS CHECK-IN</span><strong id="overview-wellness-status">0 of 3 complete today</strong><a href="#wellness-planner" data-view-target="wellness">View check-in</a></article>
+          </section>
+          </section>
+          <section class="app-view" id="view-visit" data-app-view="visit" hidden inert aria-labelledby="page-heading">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">VISIT PREPARATION</p>
+              <h2>Your conversation planner</h2>
+            </div>
+            <span class="local-badge"><span></span> Stays in this page</span>
+          </div>
+
+          <section class="workspace visit-workspace" aria-label="Care conversation planner">
+            <article class="form-card card-surface" id="visit-prep" aria-labelledby="form-heading">
+              <div class="card-heading">
+                <div>
+                  <p class="section-kicker">YOUR NOTES</p>
+                  <h2 id="form-heading">What’s been going on?</h2>
+                </div>
+                <span class="step-badge"><span>01</span> / 01</span>
+              </div>
+              <p class="card-lede">A few details can help you explain what you’re experiencing.</p>
+
+              <form id="concern-form">
+                <div class="field-group">
+                  <label for="concern">Your main concern <span class="required-mark" aria-hidden="true">*</span></label>
+                  <div class="voice-input-tools">
+                    <button class="button button-secondary voice-input-button" id="concern-voice-toggle" type="button" aria-pressed="false" aria-describedby="concern-voice-hint concern-voice-status" disabled>
+                      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><rect x="7" y="2.5" width="6" height="10" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v2.5m-3 0h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                      <span id="concern-voice-toggle-label">Start listening</span>
+                    </button>
+                    <span class="voice-listening-indicator" id="concern-voice-indicator" hidden><span class="voice-listening-dot" aria-hidden="true"></span><span id="concern-voice-indicator-label">Listening</span></span>
+                  </div>
+                  <p class="voice-privacy-note" id="concern-voice-hint">Optional browser speech recognition. Availability and audio processing vary by browser. Your browser may send audio to its own recognition service; CareGuide does not send audio to its own server or store it. Check your browser’s privacy information. Press Start listening to request microphone access. Recognized words are added here for you to review and edit; they are never submitted automatically.</p>
+                  <p class="voice-status" id="concern-voice-status" role="status" aria-live="polite"></p>
+                  <p class="field-hint" id="concern-hint">Describe what you’ve noticed in your own words.</p>
+                  <textarea id="concern" rows="4" maxlength="1000" required aria-describedby="concern-hint" placeholder="For example: I’ve had a dull ache in my lower back…"></textarea>
+                </div>
+
+                <div class="field-row">
+                  <div class="field-group">
+                    <label for="duration">How long has this been happening? <span class="required-mark" aria-hidden="true">*</span></label>
+                    <div class="select-wrap">
+                      <select id="duration" required>
+                        <option value="" disabled selected>Select a duration</option>
+                        <option value="Less than a day">Less than a day</option>
+                        <option value="1–3 days">1–3 days</option>
+                        <option value="4–7 days">4–7 days</option>
+                        <option value="More than a week">More than a week</option>
+                        <option value="On and off / not sure">On and off / not sure</option>
+                      </select>
+                      <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label for="severity">How intense does it feel? <span class="required-mark" aria-hidden="true">*</span></label>
+                    <div class="select-wrap">
+                      <select id="severity" required>
+                        <option value="" disabled selected>Select an intensity</option>
+                        <option value="Mild — noticeable, but not getting in the way">Mild · noticeable, not in the way</option>
+                        <option value="Moderate — affecting some daily activities">Moderate · affects some activities</option>
+                        <option value="Severe — making daily activities difficult">Severe · daily activities are difficult</option>
+                        <option value="Changes over time">Changes over time</option>
+                        <option value="Not sure">Not sure</option>
+                      </select>
+                      <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <label class="check-row" for="urgent-check">
+                  <input id="urgent-check" type="checkbox">
+                  <span class="custom-check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span>I’m experiencing a potentially urgent warning sign</span>
+                </label>
+
+                <div class="urgent-alert" id="urgent-alert" role="alert" hidden>
+                  <strong>Please get help now.</strong> Contact local emergency services if you may be in immediate danger. Examples include severe chest pain, difficulty breathing, sudden weakness or trouble speaking, fainting, uncontrolled bleeding, choking, or a severe allergic reaction. This list is not exhaustive; do not wait for this tool to respond.
+                </div>
+
+                <div class="form-actions">
+                  <button class="button button-primary" type="submit">
+                    Create my summary
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button class="button button-secondary" id="clear-button" type="button">Reset form</button>
+                </div>
+                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+              </form>
+            </article>
+          </section>
+          </section>
+          <section class="app-view emergency-view" id="view-emergency" data-app-view="emergency" hidden inert aria-labelledby="page-heading">
+            <div class="section-heading">
+              <div><p class="section-kicker">SAFETY FIRST</p><h2>Emergency guidance</h2></div>
+            </div>
+            <div class="urgent-area" id="urgent-care">
+                  <div class="urgent-symbol" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.25h.01M10.3 3.8 2.6 17.2A1.9 1.9 0 0 0 4.25 20h15.5a1.9 1.9 0 0 0 1.65-2.8L13.7 3.8a1.95 1.95 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  <div class="urgent-copy">
+                    <strong>Need urgent help?</strong>
+                    <p>This tool does not screen for emergencies. If you think you may be in immediate danger, contact your local emergency services now.</p>
+                    <a href="https://medlineplus.gov/ency/patientinstructions/000593.htm" target="_blank" rel="noopener noreferrer">When to use emergency care <span aria-hidden="true">↗</span></a>
+                  </div>
+                </div>
+          </section>
+          <section class="app-view summary-view" id="view-summary" data-app-view="summary" hidden inert aria-labelledby="page-heading">
+            <aside class="summary-column" aria-label="Visit summary">
+              <section class="summary-card card-surface" id="summary-panel" aria-labelledby="summary-heading">
+                <div class="card-heading summary-heading">
+                  <div>
+                    <p class="section-kicker">READY WHEN YOU ARE</p>
+                    <h2 id="summary-heading">Your visit-prep summary</h2>
+                  </div>
+                  <span class="summary-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 4.75h8m-8 4h8m-8 4h5m-9.25-9A1.75 1.75 0 0 1 5.5 2h13a1.75 1.75 0 0 1 1.75 1.75v16.5A1.75 1.75 0 0 1 18.5 22h-13a1.75 1.75 0 0 1-1.75-1.75V3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                </div>
+                <p class="summary-intro">A structured note assembled from your entries. Print opens your browser’s print dialog, where you can choose Save as PDF.</p>
+                <div class="summary-empty" id="summary-empty">
+                  <span class="empty-illustration" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><rect x="11" y="8" width="42" height="48" rx="9" fill="#E9F4F0"/><path d="M23 23h18M23 31h18M23 39h10" stroke="#558C79" stroke-width="2.5" stroke-linecap="round"/><circle cx="47" cy="47" r="10" fill="#D8EEE6" stroke="#fff" stroke-width="3"/><path d="m43.5 47 2.2 2.2 4.8-5" stroke="#35735F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <strong>Your summary will appear here</strong>
+                  <p>Fill in your notes, then select “Create my summary.”</p>
+                </div>
+                <div class="summary-result" id="summary-result" hidden>
+                  <p id="summary-text" class="summary-text"></p>
+                </div>
+                <div class="summary-footer">
+                  <div class="summary-actions">
+                    <button class="button button-copy" id="copy-button" type="button" disabled>
+                      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><rect x="7" y="6.5" width="9.5" height="11" rx="1.8" stroke="currentColor" stroke-width="1.5"/><path d="M12.5 6V4.8A1.8 1.8 0 0 0 10.7 3H5.8A1.8 1.8 0 0 0 4 4.8v8.4A1.8 1.8 0 0 0 5.8 15H7" stroke="currentColor" stroke-width="1.5"/></svg>
+                      Copy summary
+                    </button>
+                    <button class="button button-copy" id="download-summary-button" type="button" disabled>
+                      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M10 3.5v8m0 0 3-3m-3 3-3-3M4 13.5v2A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      Download summary
+                    </button>
+                    <button class="button button-copy" id="print-summary-button" type="button" disabled>
+                      <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M6 6V3.5h8V6m-8 8H4.5A1.5 1.5 0 0 1 3 12.5v-4A1.5 1.5 0 0 1 4.5 7h11A1.5 1.5 0 0 1 17 8.5v4a1.5 1.5 0 0 1-1.5 1.5H14m-8-3h8v5H6v-5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 9.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      Print / save PDF
+                    </button>
+                  </div>
+                  <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+                </div>
+              </section>
+
+              <section class="guide-card" aria-labelledby="guide-heading">
+                <span class="guide-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 14.6 9l5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2L9.4 9 12 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div>
+                  <h3 id="guide-heading">A note about this tool</h3>
+                  <p>CareGuide is an educational prototype. It does not diagnose conditions, recommend treatment or medication, or replace professional medical advice.</p>
+                  <p class="guide-ai-note">No clinical AI or paid API is connected. Your summary is assembled in this page from the details you enter.</p>
+                </div>
+              </section>
+            </aside>
+          </section>
+          <section class="app-view report-view" id="view-report" data-app-view="report" hidden inert aria-labelledby="page-heading">
+            <div class="phase-two-grid single-planner" aria-label="Medical report explainer">
+              <section class="feature-panel card-surface report-panel" id="medical-report-explainer" aria-labelledby="report-explainer-heading">
+                <div class="feature-panel-heading">
+                  <span class="feature-icon report-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5h8l4 4v13h-12v-17Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14.5 3.5v4h4m-9 4h6m-6 3h6m-6 3h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                  <div><p class="section-kicker">LOCAL TEXT EXPLAINER</p><h2 id="report-explainer-heading">Medical report explainer</h2></div>
+                </div>
+                <p class="feature-description">Paste plain text from a report. A small built-in glossary and range checker process it in this browser only. This is not AI and does not read report images or PDFs.</p>
+
+                <form class="report-form" id="report-explainer-form" novalidate>
+                  <div class="field-group">
+                    <label for="report-text">Medical report text</label>
+                    <textarea id="report-text" rows="9" maxlength="12000" spellcheck="false" aria-describedby="report-input-hint report-input-status" placeholder="Test name: result unit (reference range: lower-upper unit)"></textarea>
+                    <p class="field-hint" id="report-input-hint">Use one result per line with a label and colon. Add a numeric result and, if supplied, a clearly stated two-bound reference range. Values are not converted.</p>
+                  </div>
+                  <div class="form-actions report-actions">
+                    <button class="button button-primary" type="submit">Explain report text</button>
+                    <button class="button button-secondary" id="clear-report-input" type="button" disabled>Clear input</button>
+                  </div>
+                  <p class="form-status report-input-status" id="report-input-status" role="status" aria-live="polite"></p>
+                </form>
+
+                <aside class="report-safety-note" aria-label="Medical report safety notice">
+                  <strong>Educational information only</strong>
+                  <p>Reference ranges vary by laboratory and context. A result alone cannot diagnose a condition or establish that something is safe or dangerous. Discuss unclear or concerning findings with a qualified healthcare professional.</p>
+                  <p>This feature does not diagnose, recommend medicines, or change dosages. It does not save or transmit pasted text.</p>
+                </aside>
+
+                <details class="report-dictionary">
+                  <summary>What this local explainer recognizes</summary>
+                  <div class="report-dictionary-content">
+                    <p><strong>Common terms:</strong> hemoglobin/Hgb, white blood cell count/WBC, platelets, glucose, sodium, potassium, creatinine, cholesterol, TSH, and HbA1c. These have short glossary notes only; the dictionary is not comprehensive.</p>
+                    <p><strong>Unit notes:</strong> g/dL, mg/dL, mmol/L, mEq/L, U/L, IU/L, ng/mL, micro-international units per milliliter (uIU/mL), percent (%), fL, and pg. Unknown units are shown as entered.</p>
+                    <p><strong>Range wording:</strong> “reference range,” “ref range,” “normal range,” “expected range,” or “range,” with numeric bounds joined by a hyphen, dash, or “to.” A range may also be placed in parentheses or brackets. Units must match; case differences are ignored and no unit conversion is performed.</p>
+                  </div>
+                </details>
+
+                <aside class="report-emergency-note" aria-label="Emergency guidance">
+                  <strong>Need urgent help?</strong>
+                  <p>This tool does not screen for emergencies. If you may be in immediate danger, contact your local emergency services now. Do not wait for this explainer.</p>
+                  <a href="#urgent-care" data-view-target="emergency">Open emergency guidance</a>
+                </aside>
+
+                <section class="report-explanation" id="report-explanation" aria-labelledby="report-results-heading" hidden>
+                  <div class="report-results-heading">
+                    <div><p class="section-kicker">BASED ON THE TEXT YOU ENTERED</p><h3 id="report-results-heading">Local explanation</h3></div>
+                  </div>
+                  <ol class="report-results" id="report-results" aria-live="polite"></ol>
+                  <div class="report-copy-row">
+                    <button class="button-copy" id="copy-report-explanation" type="button" disabled>Copy explanation</button>
+                    <p class="copy-status" id="report-copy-status" role="status" aria-live="polite"></p>
+                  </div>
+                </section>
+              </section>
+            </div>
+          </section>
+          <section class="app-view planner-view doctor-finder-view" id="view-doctor-finder" data-app-view="doctor-finder" hidden inert aria-labelledby="page-heading">
+            <div class="phase-two-grid single-planner" aria-label="Doctor finder">
+              <section class="feature-panel card-surface doctor-finder-panel" id="doctor-finder" aria-labelledby="doctor-finder-heading">
+                <div class="feature-panel-heading">
+                  <span class="feature-icon doctor-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 4v5a4 4 0 0 0 8 0V4M4 4h4m4 0h4M10 13v1a4 4 0 0 0 8 0v-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="11.5" r="1.5" stroke="currentColor" stroke-width="1.6"/></svg></span>
+                  <div><p class="section-kicker">EXTERNAL SEARCH LINKS</p><h2 id="doctor-finder-heading">Doctor finder</h2></div>
+                </div>
+                <p class="feature-description">Choose a specialty and enter a city or postal/PIN code. CareGuide does not have a verified doctor directory; it prepares external search links for you.</p>
+
+                <form class="doctor-finder-form" id="doctor-finder-form" novalidate>
+                  <div class="field-group">
+                    <label for="doctor-specialty">Specialty <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input class="field-control" id="doctor-specialty" type="text" maxlength="80" required autocomplete="off" aria-describedby="doctor-specialty-hint doctor-search-status" placeholder="For example, cardiology">
+                    <p class="field-hint" id="doctor-specialty-hint">Enter the type of healthcare professional you are looking for.</p>
+                  </div>
+                  <div class="field-group">
+                    <label for="doctor-location">City or postal/PIN code <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input class="field-control" id="doctor-location" type="text" maxlength="100" required autocomplete="off" aria-describedby="doctor-location-hint doctor-search-status" placeholder="For example, a city or PIN code">
+                    <p class="field-hint" id="doctor-location-hint">Enter a city, general area, or postal/PIN code. Do not enter a home address. CareGuide does not detect your location or save these search terms.</p>
+                  </div>
+                  <div class="form-actions planner-actions">
+                    <button class="button button-primary" type="submit">Prepare search links</button>
+                    <button class="button button-secondary" id="doctor-search-clear" type="button">Clear fields</button>
+                  </div>
+                  <p class="form-status" id="doctor-search-status" role="status" aria-live="polite">Search terms stay on this page until you choose an external search link.</p>
+                </form>
+
+                <section class="doctor-search-results" id="doctor-search-results" aria-labelledby="doctor-search-results-heading" hidden>
+                  <h3 id="doctor-search-results-heading">Search externally</h3>
+                  <p class="doctor-search-preview" id="doctor-search-preview"></p>
+                  <div class="doctor-search-links">
+                    <a class="button button-secondary" id="doctor-google-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Search Google <span class="external-link-label">(opens in new tab)</span></a>
+                    <a class="button button-secondary" id="doctor-bing-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Search Bing <span class="external-link-label">(opens in new tab)</span></a>
+                  </div>
+                </section>
+
+                <aside class="report-safety-note" aria-label="Doctor finder limitations">
+                  <strong>No verified doctor listings</strong>
+                  <p>Search results come from external services and are not checked by CareGuide. Verify a professional's identity, qualifications, address, contact details, fees, and availability directly before relying on a listing.</p>
+                </aside>
+                <aside class="report-emergency-note" aria-label="Emergency guidance">
+                  <strong>Not for emergencies</strong>
+                  <p>If you may be in immediate danger, contact your local emergency services now. Do not wait for search results.</p>
+                  <a href="#urgent-care" data-view-target="emergency">Open emergency guidance</a>
+                </aside>
+              </section>
+            </div>
+          </section>
+          <section class="app-view planner-view" id="view-appointment" data-app-view="appointment" hidden inert aria-labelledby="page-heading">
+            <div class="phase-two-grid single-planner" aria-label="Appointment planner tools">
+            <section class="feature-panel card-surface" id="appointment-planner" aria-labelledby="appointment-heading">
+              <div class="feature-panel-heading">
+                <span class="feature-icon appointment-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 3v4m9-4v4M4 9.5h16m-12 3.5h3m-3 3h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+                <div><p class="section-kicker">PERSONAL PLANNING</p><h2 id="appointment-heading">Appointment planner</h2></div>
+              </div>
+              <p class="feature-description">Keep visit details you already have together. Entered information stays in this page unless you choose to download it.</p>
+              <div class="appointment-overview" aria-label="Appointment status preview">
+                <span class="appointment-status-badge" id="appointment-status-badge" data-state="empty" role="status" aria-live="polite">No appointment details</span>
+                <p class="appointment-countdown" id="appointment-countdown" role="timer" aria-label="Time until appointment">Enter a date and time to preview the appointment status.</p>
+              </div>
+
+              <form id="appointment-form" novalidate>
+                <div class="field-group">
+                  <label for="appointment-clinic">Clinic or healthcare professional <span class="required-mark" aria-hidden="true">*</span></label>
+                  <input class="field-control" id="appointment-clinic" type="text" maxlength="120" required autocomplete="off" placeholder="Enter a clinic or professional name">
+                </div>
+                <div class="field-row appointment-fields">
+                  <div class="field-group">
+                    <label for="appointment-date">Date <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input class="field-control" id="appointment-date" type="date" required>
+                  </div>
+                  <div class="field-group">
+                    <label for="appointment-time">Time <span class="required-mark" aria-hidden="true">*</span></label>
+                    <input class="field-control" id="appointment-time" type="time" required>
+                  </div>
+                </div>
+                <div class="field-group">
+                  <label for="appointment-notes">Optional notes</label>
+                  <textarea id="appointment-notes" rows="3" maxlength="600" placeholder="Anything you want to remember"></textarea>
+                </div>
+                <fieldset class="question-checklist">
+                  <legend>Optional questions to bring</legend>
+                  <label><input type="checkbox" data-appointment-question value="What details about timing, changes, or context would be helpful to share?"><span>What details about timing, changes, or context would be helpful to share?</span></label>
+                  <label><input type="checkbox" data-appointment-question value="Is there anything I should clarify about what we discussed?"><span>Is there anything I should clarify about what we discussed?</span></label>
+                  <label><input type="checkbox" data-appointment-question value="When or how should I follow up with your office?"><span>When or how should I follow up with your office?</span></label>
+                </fieldset>
+                <div class="form-actions planner-actions">
+                  <button class="button button-primary" type="submit">Download appointment details <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M10 3.5v8m0 0 3-3m-3 3-3-3M4 13.5v2A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                  <button class="button button-secondary" id="appointment-ics-button" type="button" disabled>Download .ics</button>
+                  <button class="button button-secondary" id="appointment-reset" type="button">Reset details</button>
+                </div>
+                <p class="form-status" id="appointment-status" role="status" aria-live="polite"></p>
+              </form>
+              <p class="planner-notice"><svg aria-hidden="true" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 8v4m0-6h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>This planner does not book appointments or send reminders.</p>
+            </section>
+            </div>
+          </section>
+          <section class="app-view planner-view" id="view-wellness" data-app-view="wellness" hidden inert aria-labelledby="page-heading">
+            <div class="phase-two-grid single-planner" aria-label="Wellness planning tools">
+            <section class="feature-panel card-surface" id="wellness-planner" aria-labelledby="wellness-heading">
+              <div class="feature-panel-heading">
+                <span class="feature-icon wellness-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.3-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.7-7.5 10-7.5 10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 12h2l1.1-2.2 1.7 4.4 1.1-2.2h1.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <div><p class="section-kicker">A GENTLE CHECK-IN</p><h2 id="wellness-heading">Daily wellness checklist</h2></div>
+              </div>
+              <p class="feature-description">Use these flexible prompts to notice the routines that matter to you today.</p>
+
+              <div class="wellness-dashboard-row">
+                <div class="wellness-ring" id="wellness-progressbar" role="progressbar" aria-labelledby="wellness-progress-label" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" aria-valuetext="0 of 3 complete">
+                  <div class="wellness-ring-center"><span class="progress-percent" id="wellness-progress-percent">0%</span><span>today</span></div>
+                </div>
+                <div class="wellness-progress-heading">
+                  <div>
+                    <p class="progress-title" id="wellness-progress-label">Today’s check-in</p>
+                    <p class="progress-count" id="wellness-progress-count" aria-live="polite">0 of 3 complete</p>
+                  </div>
+                  <span class="wellness-progress-caption">A personal snapshot</span>
+                </div>
+              </div>
+
+              <div class="wellness-list" aria-label="Wellness checklist items">
+                <label class="wellness-item" for="wellness-hydration">
+                  <input id="wellness-hydration" type="checkbox" data-wellness-check>
+                  <span class="wellness-checkmark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="wellness-item-copy"><strong>Hydration check-in</strong><span>I checked in with my own hydration routine today.</span></span>
+                </label>
+                <label class="wellness-item" for="wellness-movement">
+                  <input id="wellness-movement" type="checkbox" data-wellness-check>
+                  <span class="wellness-checkmark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="wellness-item-copy"><strong>Movement check-in</strong><span>I chose a comfortable activity, if suitable for me today.</span></span>
+                </label>
+                <label class="wellness-item" for="wellness-sleep">
+                  <input id="wellness-sleep" type="checkbox" data-wellness-check>
+                  <span class="wellness-checkmark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="m3.5 8 3 3 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="wellness-item-copy"><strong>Sleep routine</strong><span>I made space for a wind-down routine that works for me.</span></span>
+                </label>
+              </div>
+
+              <div class="wellness-goals-panel">
+                <div class="wellness-goals-header">
+                  <div>
+                    <h3 id="personal-goals-heading">Personal goals</h3>
+                    <p id="personal-goals-hint">Add a goal and enter text to include it in your progress. Empty goals are discarded.</p>
+                  </div>
+                  <button class="wellness-add-goal" id="add-wellness-goal" type="button" aria-label="Add a personal wellness goal" aria-controls="personal-wellness-goals" aria-describedby="personal-goals-hint">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><path d="M10 3.5v13m-6.5-6.5h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+                    <span>Add goal</span>
+                  </button>
+                </div>
+                <div class="personal-wellness-goals" id="personal-wellness-goals" role="list" aria-labelledby="personal-goals-heading"></div>
+                <p class="wellness-goals-empty" id="personal-goals-empty">No personal goals yet.</p>
+              </div>
+
+              <p class="wellness-note">Hydration and activity needs vary by person. These general prompts are not a medical plan; skip anything that does not suit you and ask a healthcare professional for personal guidance.</p>
+              <section class="weekly-overview" aria-labelledby="weekly-overview-heading">
+                <div class="weekly-overview-heading"><h3 id="weekly-overview-heading">This week</h3><span>Check-ins recorded on this device</span></div>
+                <div class="weekly-days" id="weekly-overview" aria-live="polite"></div>
+              </section>
+              <div class="wellness-storage">
+                <label class="storage-consent" for="wellness-save-toggle"><input id="wellness-save-toggle" type="checkbox"><span>Save my wellness goals and daily check-ins on this device</span></label>
+                <p>Goals and check-ins are saved only in this browser while this option is on. Visit concerns, appointment details, and reports are never saved here. Browser storage can be unavailable or cleared by your settings.</p>
+                <button class="button button-secondary button-clear-local" id="clear-local-wellness" type="button">Clear saved wellness data</button>
+              </div>
+              <div class="wellness-footer">
+                <p class="form-status" id="wellness-status" role="status" aria-live="polite"></p>
+                <button class="button button-secondary" id="wellness-reset" type="button">Reset checklist</button>
+              </div>
+            </section>
+            </div>
+          </section>
+        </main>
+
+        <footer class="site-footer">
+          <span>CareGuide AI <span class="footer-separator">·</span> Educational prototype <span class="footer-separator">·</span> Does not diagnose or replace a clinician</span>
+          <span>Your visit and appointment details stay in this page unless exported <span class="footer-separator">·</span> Not for emergencies</span>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

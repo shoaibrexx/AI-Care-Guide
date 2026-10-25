@@ -1,0 +1,38 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor and temporary files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and local server output
+*.log
+logs/
+
+# Local exports and downloads that may contain personal information
+exports/
+downloads/
+CareGuide-visit-summary.txt
+CareGuide-appointment-details.txt
+CareGuide-appointment.ics
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Generated dependencies and build output, if added later
+node_modules/
+dist/
+build/
